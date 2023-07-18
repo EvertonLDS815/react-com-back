@@ -1,6 +1,6 @@
 
 
-function Card({name, image, description, quantity, code, clik}) {
+function Card({name, image, clik}) {
     
     return(
         <div className="div-card" onClick={() => clik(name)}>

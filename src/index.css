@@ -1,159 +1,181 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+}
+
+header {
+  background: black;
+  color: white;
+  height: 65px;
+  position: fixed;
+  width: 100%;
+  padding: 15px;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header nav {
+  display: flex;
+  gap: 10px;
+}
+header nav a {
+  color: white;
 }
 .title {
-    text-align: center;
-    font-weight: 600;
+  text-align: center;
+  font-weight: 600;
 }
 main {
-    padding: 30px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(275px, auto));
-    gap: 20px;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, auto));
+  gap: 20px;
 }
 
 .div-card {
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
-    background: white;
-    border-radius: 10px;
-    cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease-in-out;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
 }
 .div-card img {
-    width: 220px;
-    aspect-ratio: 1/1;
-    object-fit: contain;
-    object-position: center;
+  width: 215px;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  object-position: center;
 }
 .div-card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 .product-name {
-    cursor: pointer;
-    font-size: 22px;
-    font-weight: 500;
-    text-align: center;
+  cursor: pointer;
+  font-size: 21px;
+  font-weight: 500;
+  text-align: center;
 }
 .content-1 {
-    display: flex;
-    padding: 15px;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  justify-content: center;
 }
 .content-2 {
-    background: #7771;
-    padding: 10px;
-    flex: 1;
+  background: #7771;
+  padding: 10px;
+  flex: 1;
 }
 
 .content-2 span {
-    font-weight: 500;
-    display: block;
+  font-weight: 500;
+  display: block;
 }
 .modal {
-    background-color: #0006;
-    backdrop-filter: blur(1px);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: #0006;
+  backdrop-filter: blur(1px);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .modal .content {
-    background: white;
-    min-width: 400px;
-    min-height: 400px;
-    border-radius: 10px;
-    position: relative;
+  background: white;
+  width: 420px;
+  min-height: 400px;
+  border-radius: 10px;
+  position: relative;
 }
 .modal h2 {
-    font-size: 26px;
-    margin: 18px 0;
-    font-weight: 600;
-    text-align: center;
+  font-size: 26px;
+  margin: 18px 0;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 50px;
 }
 .modal img {
-    width: 300px;
-    aspect-ratio: 1/1;
-    object-fit: contain;
-    object-position: center;
+  width: 300px;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  object-position: center;
 }
 .modal .content-2 {
-    padding: 10px 17px;
+  padding: 10px 17px;
 }
 .modal .content-2 p {
-    font-size: 18px;
-    display: block;
+  font-size: 18px;
+  display: block;
 }
 .modal .content-2 span {
-    font-size: 18px;
-    font-weight: 500;
-    display: block;
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
 }
 .button-close {
-    background: none;
-    border: none;
-    font-size: 35px;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 23px;
-    right: 16px;
-    cursor: pointer;
-    color: #e95151;
+  background: none;
+  border: none;
+  font-size: 35px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 23px;
+  right: 16px;
+  cursor: pointer;
+  color: #e95151;
 }
 .form-container {
-    /* background: rgb(229 230 255); */
-    border: 2px solid #999;
-    border-radius: 12px;
-    width: 450px;
-    padding: 10px 20px 20px;
-    margin: 30px auto;
+  /* background: rgb(229 230 255); */
+  border: 2px solid #999;
+  border-radius: 12px;
+  width: 450px;
+  padding: 10px 20px 20px;
+  margin: 30px auto;
 }
 .form-container h2 {
-    font-size: 27px;
-    text-align: center;
-    font-weight: 600;
-    margin-bottom: 25px;
+  font-size: 27px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 25px;
 }
 .form-container input {
-    width: 100%;
-    font-size: 18px;
-    outline: none;
-    padding: 8px 20px;
-    margin-bottom: 20px;
-    border-radius: 40px;
-    border: none;
-    background: #8882;
+  width: 100%;
+  font-size: 18px;
+  outline: none;
+  padding: 8px 20px;
+  margin-bottom: 20px;
+  border-radius: 40px;
+  border: none;
+  background: #8882;
 }
 .form-container input:focus {
-    /* outline: 1px solid #009aff; */
-    box-shadow: 0px 0px 6px #009aff;
+  /* outline: 1px solid #009aff; */
+  box-shadow: 0px 0px 6px #009aff;
 }
 .form-container button {
-    background: #8818f7;
-    border-radius: 40px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 18px;
-    outline: none;
-    width: 100%;
-    padding: 8px 20px;
+  background: #8818f7;
+  border-radius: 40px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  outline: none;
+  width: 100%;
+  padding: 8px 20px;
 }
 /* .form-container button:disabled {
     background: #ccc;
@@ -163,5 +185,22 @@ main {
     opacity: 1;
 } */
 .form-container button:hover {
-    opacity: 0.8;
+  opacity: 0.8;
+}
+
+@media (max-width: 510px) {
+  .form-container {
+    width: 90vw;
+  }
+  .modal .content {
+    min-width: 0;
+    width: 85vw;
+    width: 85vw;
+  }
+  .modal h2 {
+    font-size: 23px;
+  }
+  .modal img {
+    width: 240px;
+  }
 }
