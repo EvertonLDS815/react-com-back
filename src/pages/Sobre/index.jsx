@@ -1,7 +1,7 @@
 function Sobre() {
   return (
     <>
-      <h2>Página de sobre</h2>
+      <h1>Página de sobre</h1>
     </>
   );
 }
