@@ -4,7 +4,7 @@ import Contents from "../../components/Overlay";
 import { useEffect, useState } from "react";
 
 const api = axios.create({
-  baseURL: "http://localhost:5656/",
+  baseURL: "https://node-products.vercel.app/",
 });
 
 function Products() {
@@ -34,7 +34,7 @@ function Products() {
 
   const newProduct = () => {
     api
-      .post("/", {
+      .post("/ins", {
         name,
         image,
         description,
