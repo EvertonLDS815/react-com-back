@@ -8,7 +8,7 @@ function router() {
     <>
       <Routes>
         <Route element={<DefaultLayout />}>
-          <Route path="/products" element={<Products />}></Route>
+          <Route path="/" element={<Products />}></Route>
         </Route>
       </Routes>
     </>
