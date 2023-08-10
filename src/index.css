@@ -173,6 +173,7 @@ main {
   color: white;
   cursor: pointer;
   font-size: 18px;
+  font-weight: 500;
   outline: none;
   width: 100%;
   padding: 8px 20px;
@@ -202,5 +203,26 @@ main {
   }
   .modal img {
     width: 240px;
+  }
+}
+
+@media (max-width: 450px) {
+  main {
+    grid-template-columns: repeat(auto-fit, minmax(128px, auto));
+    gap: 17px;
+    padding: 15px;
+    margin-top: 35px;
+  }
+  .div-card img {
+    width: 160px;
+  }
+  .product-name {
+    font-size: 20px;
+  }
+  .title {
+    padding-top: 30px;
+  }
+  .title, .form-container h2 {
+    font-size: 25px;
   }
 }
