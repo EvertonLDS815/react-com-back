@@ -2,9 +2,10 @@ import axios from "axios";
 import Card from "../../components/Card";
 import Contents from "../../components/Overlay";
 import { useEffect, useState } from "react";
+import socketIo from 'socket.io-client';
 
 const api = axios.create({
-  baseURL: "https://node-products.vercel.app/",
+  baseURL: "http://localhost:300",
 });
 
 function Products() {
@@ -16,15 +17,28 @@ function Products() {
   const [code, setCode] = useState("");
 
   const [modalVisible, setModalVisibel] = useState(false);
-  const [modalarray, setModalarray] = useState([]);
+  const [modalObject, setModalObject] = useState({});
+  const [namemessage, setNamemessage] = useState("");
+  const [codemessage, setCodemessage] = useState("");
 
   function handleOpenModal(product) {
     setModalVisibel(true);
-    setModalarray(product);
+    console.log(product)
+    setModalObject(product);
   }
   function handleCloseModal() {
     setModalVisibel(false);
   }
+
+  useEffect(() => {
+    const socket = socketIo("http://localhost:300", {
+      transports: ["websocket"]
+    });
+
+    socket.on("orders@new", (product) => {
+      setProducts(prevState => prevState.concat(product))
+    })
+  }, [])
 
   useEffect(() => {
     api.get("/").then((response) => {
@@ -32,7 +46,13 @@ function Products() {
     });
   }, []);
 
-  const newProduct = () => {
+  const newProduct = (event) => {
+    event.preventDefault()
+    setName("")
+    setImage("")
+    setDescription("")
+    setQuantity("")
+    setCode("")
     api
       .post("/ins", {
         name,
@@ -41,9 +61,13 @@ function Products() {
         quantity,
         code,
       })
-      .then(() => {
-        window.location.reload(true);
+      .then((response) => {
+        setNamemessage(response.data.nameMessage)
+        setCodemessage(response.data.codeMessage)
+        console.log(response.data)
       });
+
+
   };
 
   return (
@@ -51,9 +75,10 @@ function Products() {
       <Contents
         visible={modalVisible}
         onClose={handleCloseModal}
-        array={modalarray}
+        array={modalObject}
       />
       <h1 className="title">Produtos</h1>
+      {products.length === 0 && <h2>Não há itens aqui no array</h2>}
       {products.length > 0 && (
         <main>
           {products.map((product) => (
@@ -70,11 +95,15 @@ function Products() {
         </main>
       )}
 
-      <div className="form-container">
+      <form className="form-container" onSubmit={newProduct}>
         <h2>Formulário</h2>
+        <p className="confirm">{namemessage}</p>
         <input
           placeholder="Nome do Produto"
-          onChange={(event) => setName(event.target.value)}
+          onChange={(event) => {
+            setName(event.target.value)
+            setNamemessage("")
+          }}
           required
           id="form-input"
         />
@@ -96,14 +125,18 @@ function Products() {
         />
         <input
           placeholder="Código do Produto"
-          onChange={(event) => setCode(event.target.value)}
+          onChange={(event) => {
+            setCode(event.target.value)
+            setCodemessage("")
+          }}
           className="form-input"
         />
+        <p className="confirm">{codemessage}</p>
 
-        <button onClick={newProduct} id="button-submit">
+        <button id="button-submit">
           Adicionar
         </button>
-      </div>
+      </form>
     </>
   );
 }
