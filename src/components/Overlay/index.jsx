@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 function Overlay({ visible, array, onClose }) {
-  if (!visible) {
+  if (visible === false) {
     return null;
   }
 
@@ -17,7 +17,7 @@ function Overlay({ visible, array, onClose }) {
       <div className="content">
         <h2>{array.name}</h2>
         <button onClick={onClose} className="button-close">
-          <i class="bx bx-x"></i>
+          <i className="bx bx-x"></i>
         </button>
         <div className="content-1">
           <img src={array.image} />

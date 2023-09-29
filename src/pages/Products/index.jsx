@@ -18,12 +18,25 @@ function Products() {
 
   const [modalVisible, setModalVisibel] = useState(false);
   const [modalObject, setModalObject] = useState({});
-  const [namemessage, setNamemessage] = useState("");
-  const [codemessage, setCodemessage] = useState("");
+  const [idCancel, setIdCancel] = useState("");
+
+  function handleCancelProduct(event, id) {
+
+    event.preventDefault()
+
+    products.forEach(async (product) => {
+      if (id !== product._id) {
+        return
+      }
+      console.log("São iguais")
+      await api.delete(`/ins/${id}`)
+    })
+
+    setProducts((prevState) => prevState.filter((product) => product._id !== id))
+  }
 
   function handleOpenModal(product) {
     setModalVisibel(true);
-    console.log(product)
     setModalObject(product);
   }
   function handleCloseModal() {
@@ -48,11 +61,7 @@ function Products() {
 
   const newProduct = (event) => {
     event.preventDefault()
-    setName("")
-    setImage("")
-    setDescription("")
-    setQuantity("")
-    setCode("")
+
     api
       .post("/ins", {
         name,
@@ -62,9 +71,7 @@ function Products() {
         code,
       })
       .then((response) => {
-        setNamemessage(response.data.nameMessage)
-        setCodemessage(response.data.codeMessage)
-        console.log(response.data)
+        console.log(response.data._id)
       });
 
 
@@ -95,15 +102,19 @@ function Products() {
         </main>
       )}
 
+      <form onSubmit={(event) => handleCancelProduct(event, idCancel)}>
+        <input
+          placeholder="Insira seu Id"
+          onChange={(event) => setIdCancel(event.target.value)}
+        />
+
+        <button type="submit">Remover</button>
+      </form>
       <form className="form-container" onSubmit={newProduct}>
         <h2>Formulário</h2>
-        <p className="confirm">{namemessage}</p>
         <input
           placeholder="Nome do Produto"
-          onChange={(event) => {
-            setName(event.target.value)
-            setNamemessage("")
-          }}
+          onChange={(event) => setName(event.target.value)}
           required
           id="form-input"
         />
@@ -125,13 +136,9 @@ function Products() {
         />
         <input
           placeholder="Código do Produto"
-          onChange={(event) => {
-            setCode(event.target.value)
-            setCodemessage("")
-          }}
+          onChange={(event) => setCode(event.target.value)}
           className="form-input"
         />
-        <p className="confirm">{codemessage}</p>
 
         <button id="button-submit">
           Adicionar
