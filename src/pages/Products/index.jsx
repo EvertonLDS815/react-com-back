@@ -102,7 +102,8 @@ function Products() {
         </main>
       )}
 
-      <form onSubmit={(event) => handleCancelProduct(event, idCancel)}>
+      <form className="form-container form-delete" onSubmit={(event) => handleCancelProduct(event, idCancel)}>
+        <h2>Form Delete</h2>
         <input
           placeholder="Insira seu Id"
           onChange={(event) => setIdCancel(event.target.value)}
