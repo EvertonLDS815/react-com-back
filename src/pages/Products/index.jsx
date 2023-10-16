@@ -6,7 +6,7 @@ import socketIo from 'socket.io-client';
 import { toast } from 'react-toastify';
 
 const api = axios.create({
-  baseURL: "http://localhost:300",
+  baseURL: "https://node-products.vercel.app",
 });
 
 function Products() {
