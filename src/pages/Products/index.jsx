@@ -46,7 +46,7 @@ function Products() {
   }
 
   useEffect(() => {
-    const socket = socketIo("http://localhost:300", {
+    const socket = socketIo("https://node-products.vercel.app", {
       transports: ["websocket"]
     });
 
