@@ -22,8 +22,10 @@ function Products() {
   const [idCancel, setIdCancel] = useState("");
 
   function handleCancelProduct(event, id) {
-
     event.preventDefault()
+    if (id === '') {
+      return toast.warning("Preencha seu id");
+    }
 
     products.forEach(async (product) => {
       if (id !== product._id) {
@@ -34,7 +36,8 @@ function Products() {
       });
     })
 
-    setProducts((prevState) => prevState.filter((product) => product._id !== id))
+    setProducts((prevState) => prevState.filter((product) => product._id !== id));
+    setIdCancel('');
   }
 
   function handleOpenModal(product) {
@@ -73,7 +76,9 @@ function Products() {
         code,
       })
       .then((response) => {
-        alert(response.data._id);
+        console.log(response.data.image);
+
+        setProducts(prevState => prevState.concat(response.data))
         toast.success("Produto Adicionado com sucesso!");
       });
 
