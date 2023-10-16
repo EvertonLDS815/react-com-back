@@ -3,6 +3,7 @@ import Card from "../../components/Card";
 import Contents from "../../components/Overlay";
 import { useEffect, useState } from "react";
 import socketIo from 'socket.io-client';
+import { toast } from 'react-toastify';
 
 const api = axios.create({
   baseURL: "http://localhost:300",
@@ -28,8 +29,9 @@ function Products() {
       if (id !== product._id) {
         return
       }
-      console.log("São iguais")
-      await api.delete(`/ins/${id}`)
+      await api.delete(`/ins/${id}`).then(() => {
+        toast.success("Produto deletado com sucesso!");
+      });
     })
 
     setProducts((prevState) => prevState.filter((product) => product._id !== id))
@@ -71,7 +73,8 @@ function Products() {
         code,
       })
       .then((response) => {
-        console.log(response.data._id)
+        alert(response.data._id);
+        toast.success("Produto Adicionado com sucesso!");
       });
 
 
@@ -105,6 +108,7 @@ function Products() {
       <form className="form-container form-delete" onSubmit={(event) => handleCancelProduct(event, idCancel)}>
         <h2>Form Delete</h2>
         <input
+          value={idCancel}
           placeholder="Insira seu Id"
           onChange={(event) => setIdCancel(event.target.value)}
         />
